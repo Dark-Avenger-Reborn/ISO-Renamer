@@ -48,18 +48,6 @@ chmod +x ISO-Renamer.sh
 
 ### 🪟 Windows Instructions
 
-#### Option 1: Using Git Bash or WSL
-
-1. Open **Git Bash** or **WSL terminal**
-2. Navigate to the folder containing `ISO-Renamer.sh`
-3. Run the script:
-
-```bash
-bash ISO-Renamer.sh
-```
-
-#### Option 2: Use the PowerShell Version
-
 Download and run `ISO-Renamer.ps1` using PowerShell. Run from terminal with:
 
 ```powershell
