@@ -8,14 +8,14 @@ Write-Host ""
 do {
     $isoFolder = Read-Host "Please enter the full path to the folder containing ISO files"
     if (-not (Test-Path $isoFolder)) {
-        Write-Host "⚠️  The path '$isoFolder' does not exist. Please try again." -ForegroundColor Red
+        Write-Host "âš ï¸  The path '$isoFolder' does not exist. Please try again." -ForegroundColor Red
     }
 } until (Test-Path $isoFolder)
 
 # Gather all .iso files
 $isoFiles = Get-ChildItem -Path $isoFolder -Filter *.iso
 if ($isoFiles.Count -eq 0) {
-    Write-Host "❌ No .iso files found in '$isoFolder'. Exiting." -ForegroundColor Yellow
+    Write-Host "âŒ No .iso files found in '$isoFolder'. Exiting." -ForegroundColor Yellow
     exit
 }
 
@@ -144,7 +144,7 @@ $renamePlan | ForEach-Object {
     $color = if ($_.Original -eq $_.NewName) { 'DarkGray' } elseif ($_.Warnings) { 'Yellow' } else { 'White' }
     Write-Host $msg -ForegroundColor $color
     if ($_.Warnings) {
-        Write-Host "  ⚠️  $($_.Warnings)" -ForegroundColor Yellow
+        Write-Host "  âš ï¸  $($_.Warnings)" -ForegroundColor Yellow
     }
 }
 
@@ -154,12 +154,12 @@ if ($confirmation -match '^[Yy]$') {
     foreach ($item in $renamePlan) {
         if ($item.Original -ne $item.NewName) {
             Rename-Item -Path $item.FullPath -NewName $item.NewName
-            Write-Host "Renamed: '$($item.Original)' → '$($item.NewName)'" -ForegroundColor Green
+            Write-Host "Renamed: '$($item.Original)' â†’ '$($item.NewName)'" -ForegroundColor Green
         } else {
             Write-Host "Skipped: '$($item.Original)' (no change)" -ForegroundColor DarkGray
         }
     }
-    Write-Host "`n✅ Rename complete." -ForegroundColor Green
+    Write-Host "`nâœ… Rename complete." -ForegroundColor Green
 } else {
-    Write-Host "`n❌ Aborted. No changes made." -ForegroundColor Yellow
+    Write-Host "`nâŒ Aborted. No changes made." -ForegroundColor Yellow
 }
