@@ -56,11 +56,11 @@ for file in *.iso; do
     newName="$base"
 
     # Normalize separators
-    newName=$(echo "$newName" | sed -E 's/[-_](?=[A-Za-z])|(?<=[A-Za-z])[-_]//g' | sed -E 's/\s+/ /g')
+    newName=$(echo "$newName" | sed -E 's/[-_]+/ /g' | sed -E 's/\s+/ /g')
 
     # Extract architecture
     arch=$(echo "$newName" | grep -Eo "$archRegex" | head -n1 | tr '[:upper:]' '[:lower:]')
-    if [[ -n "${archMap[$arch]}" ]]; then
+    if [[ -n "$arch" && -n "${archMap[$arch]}" ]]; then
         arch="${archMap[$arch]}"
     fi
     [[ -n "$arch" ]] && newName=$(echo "$newName" | sed -E "s/(\(| )?$arch(\)| )?//Ig")
